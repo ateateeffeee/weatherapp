@@ -21,8 +21,19 @@ const logic = (() => {
     */
 
     const getData = async function(city) {
+        //getTemp(city);
+
+        //LEFT OFF HERE
+        //Figure out how to create dom with logic info
+        
         const response = await fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=f586ade79371e87113e2f9abf57f8fbc',{mode: 'cors'});
         const weatherData = await response.json();
+        getTemp(weatherData);
+        //console.log(weatherData);
+        //console.log(weatherData.main.temp);
+    }
+
+    const getTemp = async function(weatherData) {
         console.log(weatherData.main.temp);
     }
 
@@ -37,6 +48,16 @@ const logic = (() => {
         init,
         getData,
         getUserInput,
+        /*
+        getFeelsLike,
+        getHumidity,
+        getHigh,
+        getLow,
+        getSky,
+        getPrecip,
+        */
+
+
     }
 
 
