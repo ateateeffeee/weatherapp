@@ -23,10 +23,12 @@ const dom = (() => {
 
         let userInput = document.createElement('input');
         userInput.id = 'userInput';
+        userInput.className = 'searchDivContents';
         userInput.placeholder = 'City name';
 
         let searchBtn = document.createElement('button');
         searchBtn.id = 'searchBtn';
+        searchBtn.className = 'searchDivContents';
         searchBtn.innerHTML = 'Search';
 
         //Append
