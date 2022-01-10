@@ -1,10 +1,13 @@
 //console.log('logic');
 
+const dom = require('./dom.js');
+
 const logic = (() => {
 
     const init = function() {
         console.log('logic init');
         this.getData('London');
+        //dom.createCards(); RUN THIS IN GETDATA??
     }
     
     /*
@@ -23,14 +26,18 @@ const logic = (() => {
     const getData = async function(city) {
         //getTemp(city);
 
-        //LEFT OFF HERE
-        //Figure out how to create dom with logic info
-        
         const response = await fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=f586ade79371e87113e2f9abf57f8fbc',{mode: 'cors'});
         const weatherData = await response.json();
 
         //const response2 = await fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=f586ade79371e87113e2f9abf57f8fbc',{mode: 'cors'});
-        getTemp(weatherData);
+        //LEFT OFF HERE. USE AWAIT TO MAKE RETURNS WORK
+        //send ALL variables to createCards. put at the end of
+        //this function
+        let temp = await getTemp(weatherData);
+        //getTemp(weatherData);
+        console.log('HERE IT IS: ');
+        console.log(temp);
+        dom.createCards(temp);
         
         //Execute getFeelsLike
         getFeelsLike(weatherData);
@@ -71,6 +78,7 @@ const logic = (() => {
     const getTemp = async function(weatherData) {
         console.log('TEMP: ');
         console.log(weatherData.main.temp);
+        return weatherData.main.temp
     }
 
     const getPrecip = async function(weatherData) {
@@ -110,6 +118,8 @@ const logic = (() => {
         //this will be triggered by static listener
         let cityField = document.getElementById('cityField');
     }
+
+    
     
 
     return {

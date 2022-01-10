@@ -7,6 +7,8 @@ const staticListeners = (() => {
     const init = function() {
         //console.log('static listeners init');
         this.searchBtnListener();
+        //Put initial load up here to feed logic data to dom. maybe
+
     }
 
     const searchBtnListener = function() {
