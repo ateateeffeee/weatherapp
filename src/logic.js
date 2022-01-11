@@ -33,23 +33,26 @@ const logic = (() => {
         //LEFT OFF HERE. USE AWAIT TO MAKE RETURNS WORK
         //send ALL variables to createCards. put at the end of
         //this function
+
+        //Execute data parsing functions and assign to variables
         let temp = await getTemp(weatherData);
-        //getTemp(weatherData);
-        console.log('HERE IT IS: ');
-        console.log(temp);
-        dom.createCards(temp);
+        let high = await getHigh(weatherData);
+        let low = await getLow(weatherData);
+        let feelsLike = await getFeelsLike(weatherData);
+
+        dom.createCards(temp, high, low, feelsLike);
         
         //Execute getFeelsLike
-        getFeelsLike(weatherData);
+        //getFeelsLike(weatherData);
 
         //Execute getHumidity
         getHumidity(weatherData);
 
         //Execute getHigh
-        getHigh(weatherData);
+        //getHigh(weatherData);
 
         //Execute getLow
-        getLow(weatherData);
+        //getLow(weatherData);
         
 
         //Execute getHourlyData
@@ -78,37 +81,60 @@ const logic = (() => {
     const getTemp = async function(weatherData) {
         console.log('TEMP: ');
         console.log(weatherData.main.temp);
-        return weatherData.main.temp
+
+        let temp = weatherData.main.temp;
+
+        let fahrenheit = kelvinToFahrenheit(temp);
+
+        return fahrenheit
     }
 
     const getPrecip = async function(weatherData) {
         console.log('PRECIP: ')
         console.log(weatherData.hourly[1].pop);
+
+        return weatherData.hourly[1].pop
     }
 
     const getSky = async function(weatherData) {
         console.log('SKY: ');
         console.log(weatherData.hourly[1].weather[0].description);
+
+        return weatherData.hourly[1].weather[0].description
     }
 
     const getFeelsLike = async function(weatherData) {
         console.log('FEELS LIKE: ');
         console.log(weatherData.main.feels_like);
+
+        return weatherData.main.feels_like
     }
 
     const getHumidity = async function(weatherData) {
         console.log('HUMIDITY: ');
         console.log(weatherData.main.humidity);
+
+        return weatherData.main.humidity
     }
 
     const getHigh = async function(weatherData) {
         console.log('HIGH: ');
         console.log(weatherData.main.temp_max);
+
+        return weatherData.main.temp_max
     }
 
     const getLow = async function(weatherData) {
         console.log('LOW: ');
         console.log(weatherData.main.temp_min);
+
+       return weatherData.main.temp_min
+    }
+
+    const kelvinToFahrenheit = function(kelvin) {
+        let fahrenheit = ((kelvin - 273.15) * (9/5)) + 32;
+        //LEFT OFF HERE. DO THIS FOR ALL OF EM
+        return fahrenheit.toFixed(2);
     }
 
 

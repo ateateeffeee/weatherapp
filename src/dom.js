@@ -39,7 +39,7 @@ const dom = (() => {
         content.append(div);
     }
 
-    const createCards = function(temp) {
+    const createCards = function(temp, high, low, feelsLike) {
         console.log('Make the cards');
         let content = document.getElementById('content');
         //Cards container
@@ -49,14 +49,14 @@ const dom = (() => {
         content.append(container);
 
         //temp card
-        createTempCard(temp);
+        createTempCard(temp, high, low, feelsLike);
 
         //precip card
 
         //desc card
     }
 
-    const createTempCard = function(temp) {
+    const createTempCard = function(temp, high, low, feelsLike) {
         let container = document.getElementById('cardsContainer');
 
 
@@ -68,7 +68,7 @@ const dom = (() => {
 
         let card0Title = document.createElement('div');
         card0.className = 'cardTitles';
-        card0.innerHTML = 'Title';
+        card0.innerHTML = 'Temperature';
 
         let tempText = document.createElement('div');
         tempText.className = 'cardData';
@@ -76,15 +76,17 @@ const dom = (() => {
 
         let highText = document.createElement('div');
         highText.className = 'cardData';
-        highText.innerHTML = 'High';
+        highText.id = 'highTemp';
+        highText.innerHTML = high;
 
         let lowText = document.createElement('div');
         lowText.className = 'cardData';
-        lowText.innerHTML = 'Low';
+        lowText.id = 'lowTemp';
+        lowText.innerHTML = low;
 
-        let feelsLike = document.createElement('div');
-        feelsLike.className = 'cardData';
-        feelsLike.innerHTML = 'Feels like';
+        let feelsLikeText = document.createElement('div');
+        feelsLikeText.className = 'cardData';
+        feelsLikeText.innerHTML = "Feels like: " + feelsLike;
         
 
 
@@ -96,7 +98,7 @@ const dom = (() => {
         card0.append(tempText);
         card0.append(highText);
         card0.append(lowText);
-        card0.append(feelsLike);
+        card0.append(feelsLikeText);
 
 
     }
